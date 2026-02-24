@@ -1,9 +1,10 @@
-// Project Title
-// Your Name
-// Date
+// interactive sence
+// Abdulah Abdelshafi
+// Febuary 24 2026
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// I made it so that when you scrool the mouse wheel up it makes it harder and the speed faster and if you scrool down it makes it slower so it is easier. 
+//  I also inculed an image background that chnages from the loading screen to the start screen 
 
 
 // defining variables
@@ -35,6 +36,7 @@ function setup() {
   ySpeed = random(3, 4);
 }
 
+// drawing the whole thing
 function draw() {
   background("red");
   if (state === "loading") {
@@ -71,18 +73,19 @@ function mousePressed() {
   }
 }
 
-//  extra for experts when the mouse is scrolled up it increases the speed and down decreases
+//  extra for experts when the mouse is scrolled up it increases the speed and down decreases (recourses and google)
 function mouseWheel(event) {
   if (event.delta > 0) {
     xSpeed *= 0.9;
     ySpeed *= 0.9;
-  } else {
+  } 
+  else {
     xSpeed *= 1.1;
     ySpeed *= 1.1;
   }
 }
 
-//display the rectangle and circle
+// display the rectangle and circle
 function displayRect() {
   fill("black");
   rect(rx, ry, w, h, 20);
@@ -118,7 +121,7 @@ function bounceOfWall() {
 
 // boucing ball of the rectangle
 function rectBounce() {
-  if (y + radius / 2 >= ry && x > rx && x < rx + w && ySpeed > 0) {
+  if (y + radius / 2 >= ry && x > rx && x < rx + w) {
     ySpeed *= -1;
   }
 }
@@ -130,7 +133,7 @@ function gameOver() {
   }
 }
 
-//  image in the back 
+// image in the back 
 // how do i say where i got the extra for experts 
-//  is the form correct 
-//  how do I fix if it touches the end of rectangle 
+// is the form correct 
+// how do I fix if it touches the end of rectangle 
