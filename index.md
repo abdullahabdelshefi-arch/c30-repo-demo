@@ -1,7 +1,7 @@
-# my cs30 stuff
+# My CS30 Stuff
 
-## demos
-- ill add demos here
+## Demos
+- [First Day Demo](01-first-demo)
 
 ## assigmants
 - assigments here
