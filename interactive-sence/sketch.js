@@ -4,7 +4,7 @@
 //
 // Extra for Experts:
 // I made it so that when you scrool the mouse wheel up it makes it harder and the speed faster and if you scrool down it makes it slower so it is easier. 
-//  I also inculed an image background that chnages from the loading screen to the start screen 
+// I also inculed an image background that chnages from the loading screen to the start screen 
 
 
 // defining variables
