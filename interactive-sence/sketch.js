@@ -1,4 +1,4 @@
-// interactive sence
+// Interactive sence
 // Abdulah Abdelshafi
 // Febuary 24 2026
 //
@@ -30,8 +30,8 @@ function setup() {
   x = width / 2;
   y = height / 2;
   w = 100;
-  startX = x - 50;
-  startY = y + 50;
+  startX = x - h;
+  startY = y + h;
   xSpeed = random(3, 4);
   ySpeed = random(3, 4);
 }
@@ -75,10 +75,12 @@ function mousePressed() {
 
 //  extra for experts when the mouse is scrolled up it increases the speed and down decreases (recourses and google)
 function mouseWheel(event) {
+  // Down
   if (event.delta > 0) {
     xSpeed *= 0.9;
     ySpeed *= 0.9;
   } 
+  // Up
   else {
     xSpeed *= 1.1;
     ySpeed *= 1.1;
@@ -121,7 +123,7 @@ function bounceOfWall() {
 
 // boucing ball of the rectangle
 function rectBounce() {
-  if (y + radius / 2 >= ry && x > rx && x < rx + w) {
+  if (y + radius / 2 >= ry / 2 && x > rx && x < rx + w ) {
     ySpeed *= -1;
   }
 }
@@ -134,6 +136,5 @@ function gameOver() {
 }
 
 // image in the back 
-// how do i say where i got the extra for experts 
 // is the form correct 
 // how do I fix if it touches the end of rectangle 
