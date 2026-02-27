@@ -123,7 +123,7 @@ function bounceOfWall() {
 
 // boucing ball of the rectangle
 function rectBounce() {
-  if (y + radius / 2 >= ry / 2 && x > rx && x < rx + w ) {
+  if (y + radius / 2 >= ry / 2 && x > rx && x < rx + w) {
     ySpeed *= -1;
   }
 }
@@ -135,6 +135,6 @@ function gameOver() {
   }
 }
 
-// image in the back 
+
 // is the form correct 
 // how do I fix if it touches the end of rectangle 
