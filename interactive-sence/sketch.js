@@ -116,11 +116,11 @@ function moveBall() {
 
 // Bouncing off the wall
 function bounceOfWall() {
-  // side wall
+  // Side wall
   if (x + radius / 2 > width || x - radius / 2 < 0) {
     xSpeed *= -1;
   }
-  // top wall
+  // Top wall
   if (y - radius / 2 < 0) {
     ySpeed *= -1;
   }
@@ -129,6 +129,15 @@ function bounceOfWall() {
 // Boucing ball of the rectangle
 function rectBounce() {
   if (y + radius / 2 >= ry && x > rx && x < rx + w) {
+    removeGlitch();
+  }
+}
+
+// Removing it bouncing over and over at the bottom
+function removeGlitch() {
+  // top it goes up the rect and then bounces if goes down u get 1 more life
+  if (y + radius / 2 >= ry && x > rx && x < rx + w ) {
+    y = ry - radius / 2;
     ySpeed *= -1;
   }
 }
@@ -140,6 +149,8 @@ function gameOver() {
   }
 }
 
+
+
 // while loop if it is still contacting the rect from the top kepp going up till it isnt touching down keep moving down till it isnt touching
-// while y + radius/2 <= top: ySpeed * -1
-// while y + raduis/2 >= bottom: ySpeed * 1
+// if y + radius/2 <= top: ySpeed * -1
+// if y + raduis/2 >= bottom: dont chnage direction
