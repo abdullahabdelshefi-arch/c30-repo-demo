@@ -9,3 +9,4 @@
 
 ## Assigmants
 - [interactive sence](interactive-sence)
+- [array and object notation](array-assimant)
