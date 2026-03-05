@@ -5,6 +5,7 @@
 - [scope](02-scope)
 - [Images](03-images)
 - [Ball Array](04-ball-array)
+- [genrative art](05-art)
 
 ## Assigmants
 - [interactive sence](interactive-sence)
