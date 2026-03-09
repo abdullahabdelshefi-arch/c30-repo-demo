@@ -148,9 +148,3 @@ function gameOver() {
     state = "gameOver";
   }
 }
-
-
-
-// while loop if it is still contacting the rect from the top kepp going up till it isnt touching down keep moving down till it isnt touching
-// if y + radius/2 <= top: ySpeed * -1
-// if y + raduis/2 >= bottom: dont chnage direction
