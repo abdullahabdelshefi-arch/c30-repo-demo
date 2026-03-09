@@ -7,7 +7,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   for (let x = THE_SIZE/2;  x< width;  x += THE_SIZE){
     for(let y = THE_SIZE/2 ; y < height; y+= THE_SIZE){
-      let someTile = spawnTile(x, y, The_SIZE);
+      let someTile = spawnTile(x, y, THE_SIZE);
       theTile.push(someTile);
     }
   }
