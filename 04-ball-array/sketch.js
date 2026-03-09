@@ -46,9 +46,9 @@ function spawnBall(_x, _y) {
     dx: random(-5, 5),
     dy: random(-5, 5),
     radius: random(10, 30),
-    r: random(0, 255),
-    g: random(0, 255),
-    b: random(0, 255),
+    r: random(0 || 255),
+    g: random(0 || 255),
+    b: random(0 || 255),
   };
   ballArray.push(someBall);
 }
