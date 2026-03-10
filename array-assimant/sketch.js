@@ -57,6 +57,9 @@ function draw() {
     bounceOfWall();
     rectBounce();
     gameOver();
+    spawnDrops();
+    updateDrops();
+    checkDropCatch();
   }
 
   // If the ball passes write game over
@@ -114,18 +117,68 @@ function bounceOfWall() {
 }
 
 // makes random rectangles to pop up diffrent colors each with diffrent apilties 
-function spawnRect(_x, _y) {
-  let someRect = {
-    x: _x,
-    y: _y,
-    dx: random(-5, 5),
-    dy: random(-5, 5),
-    radius: random(10, 30),
-    r: random(0 || 255),
-    g: random(0 || 255),
-    b: random(0 || 255),
-  };
-  powerUps.push(someRect);
+function spawnDrops(){
+  if(random(1) < 0.01){
+    let drop = {
+      x: 20,
+      y: -20,
+      size: 25,
+      speed: 3,
+      type: random(["fast","slow","big","small"]),
+      r: 0,
+      g: 0,
+      b: 0
+    };
+    if(drop.type === "fast"){
+      drop.r = 255;
+      drop.g = 0;
+      drop.b = 0;
+    }
+    if(drop.type === "slow"){
+      drop.r = 0;
+      drop.g = 0;
+      drop.b = 255;
+    }
+    if(drop.type === "big"){
+      drop.r = 0;
+      drop.g = 255;
+      drop.b = 0;
+    }
+    if(drop.type === "small"){
+      drop.r = 0;
+      drop.g = 0;
+      drop.b = 0;
+    }
+    powerUps.push(drop);
+  }
+}
+
+function updateDrops(){
+  for(let d of powerUps){
+    d.y += d.speed;
+    fill(d.r, d.g, d.b);
+    rect(d.x, d.y, d.size, d.size);
+  }
+}
+
+function checkDropCatch(){
+  for(let d of powerUps){
+    if(d.y + d.size >= ry && d.x > rx && d.x < rx + w){
+      if(d.type === "fast"){
+        rx += 3;
+      }
+      if(d.type === "slow"){
+        rx += -2;
+      }
+      if(d.type === "big"){
+        w += 2;
+      }
+      if(d.type === "small"){
+        w -= 2;
+      }
+      d.y = height + 100;
+    }
+  }
 }
 
 // Boucing ball of the rectangle
