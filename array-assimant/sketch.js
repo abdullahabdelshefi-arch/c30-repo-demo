@@ -116,7 +116,7 @@ function bounceOfWall() {
   }
 }
 
-// makes random rectangles to pop up diffrent colors each with diffrent apilties 
+// makes random rectangles to pop up diffrent colors each with diffrent apilties or makes the ball faster 
 function spawnDrops(){
   if(random(1) < 0.01){
     let drop = {
@@ -124,21 +124,11 @@ function spawnDrops(){
       y: -20,
       size: 25,
       speed: 3,
-      type: random(["fast","slow","big","small"]),
+      type: random(["big","small"]),
       r: 0,
       g: 0,
       b: 0
     };
-    if(drop.type === "fast"){
-      drop.r = 255;
-      drop.g = 0;
-      drop.b = 0;
-    }
-    if(drop.type === "slow"){
-      drop.r = 0;
-      drop.g = 0;
-      drop.b = 255;
-    }
     if(drop.type === "big"){
       drop.r = 0;
       drop.g = 255;
@@ -164,16 +154,10 @@ function updateDrops(){
 function checkDropCatch(){
   for(let d of powerUps){
     if(d.y + d.size >= ry && d.x > rx && d.x < rx + w){
-      if(d.type === "fast"){
-        rx += 3;
+      if(d.type === "big" && w < 100){
+        w += 3;
       }
-      if(d.type === "slow"){
-        rx += -2;
-      }
-      if(d.type === "big"){
-        w += 2;
-      }
-      if(d.type === "small"){
+      if(d.type === "small"  && w > 100){
         w -= 2;
       }
       d.y = height + 100;
