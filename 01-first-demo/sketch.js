@@ -15,6 +15,5 @@ function draw() {
   circle(mouseX,mouseY, 50); 
 }
 for (num = 25; num < 35; num +=1){
-  num = 25;
   console.log (num);
 }

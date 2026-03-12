@@ -143,6 +143,7 @@ function spawnDrops(){
   }
 }
 
+// drops the accual rectangles
 function updateDrops(){
   for(let d of powerUps){
     d.y += d.speed;
@@ -151,6 +152,7 @@ function updateDrops(){
   }
 }
 
+// checks if the drop is touching the rectangle 
 function checkDropCatch(){
   for(let d of powerUps){
     if(d.y + d.size >= ry && d.x > rx && d.x < rx + w){
