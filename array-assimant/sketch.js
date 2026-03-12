@@ -7,29 +7,29 @@
 
 
 // Defining variables
-let rx;
-let ry;
+let paddleX;
+let paddleY;
 let x;
 let y;
 let xSpeed;
 let ySpeed;
-let w;
+let paddleWidth;
 let radius = 30;
 let state = "loading";
-let h = 50;
+let paddleHeight = 50;
 let startX;
-let StartY;
+let startY;
 let powerUps = [];
 
 // Stetting up the display
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
-  rx = width / 2.2;
-  ry = height / 1.1;
+  paddleX = width / 2.2;
+  paddleY = height / 1.1;
   x = width / 2;
   y = height / 2;
-  w = 100;
+  paddleWidth = 100;
   startX = x - 50;
   startY = y + 50;
   xSpeed = random(3, 4);
@@ -40,7 +40,7 @@ function setup() {
 function draw() {
   background("black");
   if (state === "loading") {
-    rect(startX, startY, w, h);
+    rect(startX, startY, paddleWidth, paddleHeight);
     textSize(70);
     fill("white");
     textAlign(CENTER);
@@ -74,7 +74,7 @@ function draw() {
 
 // If the mouse is pressed on the rectangle under the start button
 function mousePressed() {
-  if (mouseX > startX && mouseX < startX + w && mouseY > startY && mouseY < startY + h) {
+  if (mouseX > startX && mouseX < startX + paddleWidth && mouseY > startY && mouseY < startY + paddleHeight) {
     state = "play";
   }
 }
@@ -82,7 +82,7 @@ function mousePressed() {
 // Display the rectangle and ball
 function displayRect() {
   fill("black");
-  rect(rx, ry, w, h, 20);
+  rect(paddleX, paddleY, paddleWidth, paddleHeight, 20);
 }
 function displayCircle() {
   fill("white");
@@ -92,10 +92,10 @@ function displayCircle() {
 // Move rectangle and ball
 function moveRect() {
   if (keyIsDown(68) === true) {
-    rx += 5;
+    paddleX += 5;
   }
   if (keyIsDown(65) === true) {
-    rx -= 5;
+    paddleX -= 5;
   }
 }
  
@@ -121,7 +121,7 @@ function spawnDrops(){
   if(random(1) < 0.01){
     let drop = {
       x: 20,
-      y: -20,
+      y: 0,
       size: 25,
       speed: 3,
       type: random(["big","small"]),
@@ -129,6 +129,7 @@ function spawnDrops(){
       g: 0,
       b: 0
     };
+    // checks which kind it is
     if(drop.type === "big"){
       drop.r = 0;
       drop.g = 255;
@@ -155,21 +156,20 @@ function updateDrops(){
 // checks if the drop is touching the rectangle 
 function checkDropCatch(){
   for(let d of powerUps){
-    if(d.y + d.size >= ry && d.x > rx && d.x < rx + w){
-      if(d.type === "big" && w < 100){
-        w += 3;
+    if(d.y + d.size >= paddleY && d.x > paddleX && d.x < paddleX + paddleWidth){
+      if(d.type === "big"){
+        paddleWidth += 3;
       }
-      if(d.type === "small"  && w > 100){
-        w -= 2;
+      if(d.type === "small"){
+        paddleWidth -= 2;
       }
-      d.y = height + 100;
     }
   }
 }
 
 // Boucing ball of the rectangle
 function rectBounce() {
-  if (y + radius / 2 >= ry && x > rx && x < rx + w) {
+  if (y + radius / 2 >= paddleY && x > paddleX && x < paddleX + paddleWidth) {
     removeGlitch();
   }
 } 
@@ -177,8 +177,8 @@ function rectBounce() {
 // Removing it bouncing over and over at the bottom
 function removeGlitch() {
   // top it goes up the rect and then bounces if goes down u get 1 more life
-  if (y + radius / 2 >= ry && x > rx && x < rx + w ) {
-    y = ry - radius / 2;
+  if (y + radius / 2 >= paddleY && x > paddleX && x < paddleX + paddleWidth ) {
+    y = paddleY - radius / 2;
     ySpeed *= -1;
   }
 }
