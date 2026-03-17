@@ -3,7 +3,7 @@
 // March 9
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - Made it kepp traking of the score on the right
 
 
 // Defining variables
@@ -19,6 +19,7 @@ let state = "loading";
 let paddleHeight = 50;
 let startX;
 let startY;
+let score = 0;
 let powerUps = [];
 
 // Stetting up the display
@@ -60,6 +61,7 @@ function draw() {
     spawnDrops();
     updateDrops();
     checkDropCatch();
+    drawScore();
   }
 
   // If the ball passes write game over
@@ -76,6 +78,19 @@ function draw() {
 function mousePressed() {
   if (mouseX > startX && mouseX < startX + paddleWidth && mouseY > startY && mouseY < startY + paddleHeight) {
     state = "play";
+  }
+}
+
+// Restarting the game when r is pressed
+function keyPressed(){
+  if(key === "r"){
+    state = "play";
+    x = width / 2;
+    y = height / 2;
+    paddleWidth = 100;
+    xSpeed = random(3,4);
+    ySpeed = random(3,4);
+    powerUps = [];
   }
 }
 
@@ -97,6 +112,15 @@ function moveRect() {
   if (keyIsDown(65) === true) {
     paddleX -= 5;
   }
+
+  // stops the paddle from going off the screen
+  if(paddleX < 0){
+    paddleX = 0;
+  }
+
+  if(paddleX + paddleWidth > width){
+    paddleX = width - paddleWidth;
+  }
 }
  
 function moveBall() {
@@ -116,7 +140,7 @@ function bounceOfWall() {
   }
 }
 
-// makes random rectangles to pop up diffrent colors each with diffrent apilties or makes the ball faster 
+// Makes random rectangles to pop up diffrent colors each with diffrent apilties or makes the ball faster 
 function spawnDrops(){
   if(random(1) < 0.01){
     let drop = {
@@ -129,7 +153,7 @@ function spawnDrops(){
       g: 0,
       b: 0
     };
-    // checks which kind it is
+    // Checks which kind it is
     if(drop.type === "big"){
       drop.r = 0;
       drop.g = 255;
@@ -144,7 +168,7 @@ function spawnDrops(){
   }
 }
 
-// drops the accual rectangles
+// Drops the accual rectangles
 function updateDrops(){
   for(let d of powerUps){
     d.y += d.speed;
@@ -153,7 +177,7 @@ function updateDrops(){
   }
 }
 
-// checks if the drop is touching the rectangle 
+// Checks if the drop is touching the rectangle 
 function checkDropCatch(){
   for(let d of powerUps){
     if(d.y + d.size >= paddleY && d.x > paddleX && d.x < paddleX + paddleWidth){
@@ -164,6 +188,10 @@ function checkDropCatch(){
         paddleWidth -= 2;
       }
     }
+    if (d.y > paddleY){
+      powerUps.splice(powerUps.length - 1, 1);
+      console.log(powerUps);
+    }
   }
 }
 
@@ -171,6 +199,7 @@ function checkDropCatch(){
 function rectBounce() {
   if (y + radius / 2 >= paddleY && x > paddleX && x < paddleX + paddleWidth) {
     removeGlitch();
+    score += 1; // increase score
   }
 } 
 
@@ -182,6 +211,15 @@ function removeGlitch() {
     ySpeed *= -1;
   }
 }
+
+// Keeps track of the score 
+function drawScore(){
+  fill(255);
+  textSize(24);
+  textAlign(RIGHT);
+  text("Score:" + score, width - 10, 30);
+}
+
 
 // Checking if the game is over
 function gameOver() {
