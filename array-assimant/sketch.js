@@ -3,7 +3,7 @@
 // March 9
 //
 // Extra for Experts:
-// - Made it kepp traking of the score on the right
+// - Made it keep traking of the score on the right
 
 
 // Defining variables
@@ -91,6 +91,7 @@ function keyPressed(){
     xSpeed = random(3,4);
     ySpeed = random(3,4);
     powerUps = [];
+    score = 0;
   }
 }
 
@@ -179,7 +180,8 @@ function updateDrops(){
 
 // Checks if the drop is touching the rectangle 
 function checkDropCatch(){
-  for(let d of powerUps){
+  for(let i = 0; i < powerUps.length; i++){
+    let d = powerUps[i];
     if(d.y + d.size >= paddleY && d.x > paddleX && d.x < paddleX + paddleWidth){
       if(d.type === "big"){
         paddleWidth += 3;
@@ -189,7 +191,7 @@ function checkDropCatch(){
       }
     }
     if (d.y > paddleY){
-      powerUps.splice(powerUps.length - 1, 1);
+      powerUps.splice(i, 1);
       console.log(powerUps);
     }
   }
@@ -205,7 +207,7 @@ function rectBounce() {
 
 // Removing it bouncing over and over at the bottom
 function removeGlitch() {
-  // top it goes up the rect and then bounces if goes down u get 1 more life
+  // Top it goes up the rect and then bounces if goes down u get 1 more life
   if (y + radius / 2 >= paddleY && x > paddleX && x < paddleX + paddleWidth ) {
     y = paddleY - radius / 2;
     ySpeed *= -1;
