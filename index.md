@@ -6,6 +6,7 @@
 - [Images](03-images)
 - [Ball Array](04-ball-array)
 - [genrative art](05-art)
+- [2d gride](07-grid)
 
 ## Assigmants
 - [interactive sence](interactive-sence)
