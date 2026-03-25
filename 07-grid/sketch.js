@@ -27,6 +27,17 @@ function draw() {
 function mousePressed(){
   let x = Math.floor(mousex/cellSize);
   let y = Math.floor(mousey/cellSize);
+
+  toggleCell(x,y);
+}
+
+function toggleCell(){
+  if (theGrid[y][x] === 1){
+    theGrid[y][x] === 0;
+  }
+  if (theGrid[y][x] === 1){
+    theGrid[y][x] === 0;
+  }
 }
 
 function showGrid() {
