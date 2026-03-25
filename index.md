@@ -7,6 +7,7 @@
 - [Ball Array](04-ball-array)
 - [genrative art](05-art)
 - [2d gride](07-grid)
+- [charecter in grid](10-charecter)
 
 ## Assigmants
 - [interactive sence](interactive-sence)
