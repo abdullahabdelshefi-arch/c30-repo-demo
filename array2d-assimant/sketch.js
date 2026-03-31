@@ -17,6 +17,8 @@ let snakeY = 10;
 let foodX;
 let foodY;
 
+
+
 // start button
 let paddleHeight = 50;
 let paddleWidth = 200;
@@ -64,7 +66,6 @@ function draw() {
     background(220);
     updateGrid();
     showGrid();
-    drawSnake();
   }
 
   if (state === "gameOver") {
@@ -157,29 +158,6 @@ function mousePressed() {
   }
 }
 
-// how to give the snake another tail
-function growSnake() {
-  let tail = snake[snake.length - 1];
-  // add a new block at the end
-  snake.push({x: tail.x, y: tail.y});
-}
-
-// checks if you have to add ahead to the snake
-function checkFood() {
-  let head = snake[0];
-  if (head.x === food.x && head.y === food.y) {
-    growSnake();   // 👈 THIS is what you wanted
-    spawnFood();
-  }
-}
-
-// drawing the snake
-function drawSnake() {
-  fill("green");
-  for (let s of snake) {
-    square(s.x * cellSize, s.y * cellSize, cellSize);
-  }
-}
 
 
 
