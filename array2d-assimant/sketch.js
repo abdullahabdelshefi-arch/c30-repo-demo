@@ -1,9 +1,9 @@
-// Snake Grid Game
+// Move/Reaction time
 // Abdullah Abdelshafi
 // March 26 2026
 //
 // Extra for Experts:
-// - kkk
+// - Made a 5 second timer so if you run out of time you die 
 
 let state = "loading";
 
@@ -17,7 +17,8 @@ let snakeY = 10;
 let foodX;
 let foodY;
 
-
+let score = 0;
+let timer = 5;
 
 // start button
 let paddleHeight = 50;
@@ -32,10 +33,10 @@ function setup() {
   startY = height/2 + 50;
 
   if (width < height) {
-    cellSize = width / GRID_SIZE;
+    cellSize = windowWidth / GRID_SIZE;
   }
   else {
-    cellSize = height / GRID_SIZE;
+    cellSize = windowHeight / GRID_SIZE;
   }
 
   // create grid
@@ -53,12 +54,12 @@ function draw() {
   background("black");
 
   if (state === "loading") {
-    fill("white");
+    fill("red");
     rect(startX, startY, paddleWidth, paddleHeight);
 
     textSize(60);
     textAlign(CENTER);
-    fill("white");
+    fill("red");
     text("Press Rectangle To Start", width/2, height/2);
   }
 
@@ -66,6 +67,9 @@ function draw() {
     background(220);
     updateGrid();
     showGrid();
+    drawScore();
+    drawTime();
+    // checkTime();
   }
 
   if (state === "gameOver") {
@@ -76,14 +80,15 @@ function draw() {
   }
 }
 
+// Randomizes where the food is spawned
 function spawnFood() {
   foodX = floor(random(GRID_SIZE));
   foodY = floor(random(GRID_SIZE));
 }
 
+// Updating the grid and the square you have to get too
 function updateGrid() {
-
-  // clear grid
+  // Clear grid
   for (let y = 0; y < GRID_SIZE; y++) {
     for (let x = 0; x < GRID_SIZE; x++) {
       grid[y][x] = 0;
@@ -94,6 +99,7 @@ function updateGrid() {
   grid[foodY][foodX] = 2;
 }
 
+// Grid display
 function showGrid() {
   for (let y = 0; y < GRID_SIZE; y++) {
     for (let x = 0; x < GRID_SIZE; x++) {
@@ -115,6 +121,7 @@ function showGrid() {
   }
 }
 
+//  Moving keys 
 function keyPressed() {
   if (key === "w") {
     snakeY--;
@@ -132,17 +139,19 @@ function keyPressed() {
     snakeX++;
   }
   
-  // wall collision
+  // Wall collision
   if (snakeX < 0 || snakeX >= GRID_SIZE || snakeY < 0 || snakeY >= GRID_SIZE) {
     state = "gameOver";
   }
 
-  // eating food
+  // Eating food
   if (snakeX === foodX && snakeY === foodY) {
     spawnFood();
+    score += 1; // increase score
+    
   }
   
-  // rest game
+  // Rest game
   if (key === "r") {
     state = "loading";
     snakeX = 10;
@@ -150,7 +159,7 @@ function keyPressed() {
   }
 }
 
-//  If the rectangle is clicked on loading screen
+// If the rectangle is clicked on loading screen
 function mousePressed() {
   if (mouseX > startX && mouseX < startX + paddleWidth &&
       mouseY > startY && mouseY < startY + paddleHeight) {
@@ -158,7 +167,21 @@ function mousePressed() {
   }
 }
 
+// Keeps track of the score 
+function drawScore(){
+  fill("black");
+  textSize(24);
+  textAlign(RIGHT);
+  text("Score:" + score, width - 10, 30);
+}
 
+// Keeps track of the time
+function drawTime(){
+  fill("black");
+  textSize(24);
+  textAlign(LEFT);
+  text("Time:" + timer, width - 930, 30);
+}
 
 
 
