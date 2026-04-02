@@ -18,7 +18,8 @@ let foodX;
 let foodY;
 
 let score = 0;
-let timer = 5;
+let timer = 60;
+let lastTime = 0;
 
 // start button
 let paddleHeight = 50;
@@ -69,7 +70,7 @@ function draw() {
     showGrid();
     drawScore();
     drawTime();
-    // checkTime();
+    updateTime();
   }
 
   if (state === "gameOver") {
@@ -77,6 +78,7 @@ function draw() {
     fill("white");
     textAlign(CENTER);
     text("Game Over", width/2, height/2);
+    text(`Score: ${score}`, width/2  + 20, height/2 + 100);
   }
 }
 
@@ -148,7 +150,6 @@ function keyPressed() {
   if (snakeX === foodX && snakeY === foodY) {
     spawnFood();
     score += 1; // increase score
-    
   }
   
   // Rest game
@@ -156,6 +157,7 @@ function keyPressed() {
     state = "loading";
     snakeX = 10;
     snakeY = 10;
+    timer = 60;
   }
 }
 
@@ -183,6 +185,18 @@ function drawTime(){
   text("Time:" + timer, width - 930, 30);
 }
 
+function updateTime() {
+  if (millis() - lastTime >= 1000) { // 1 second passed
+    timer--;
+    lastTime = millis();
+  }
+  if (timer <= 0) {
+    state = "gameOver";
+  }
+}
 
 
+
+// fix full screen problem
+// build timer
 
