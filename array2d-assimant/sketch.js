@@ -18,6 +18,7 @@ let foodX;
 let foodY;
 
 let score = 0;
+let bestScore = 0;
 let timer = 60;
 let lastTime = 0;
 
@@ -26,6 +27,8 @@ let paddleHeight = 50;
 let paddleWidth = 200;
 let startX;
 let startY;
+let savedScore;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -47,7 +50,6 @@ function setup() {
       grid[y][x] = 0;
     }
   }
-
   spawnFood();
 }
 
@@ -79,7 +81,8 @@ function draw() {
     fill("white");
     textAlign(CENTER);
     text("Game Over", width/2, height/2);
-    text(`Best Score: ${score}`, width/2  + 20, height/2 + 100);
+    bestScore = getItem('bestScore');
+    text(`Best Score: ${bestScore}`, width/2  + 20, height/2 + 100);
   }
 }
 
@@ -144,6 +147,10 @@ function keyPressed() {
   
   // Wall collision
   if (snakeX < 0 || snakeX >= GRID_SIZE || snakeY < 0 || snakeY >= GRID_SIZE) {
+    if (score > bestScore) {
+      bestScore = score;
+      storeItem('bestScore', bestScore);
+    }
     state = "gameOver";
   }
 
@@ -194,6 +201,10 @@ function updateTime() {
     lastTime = millis();
   }
   if (timer <= 0) {
+    if (score > bestScore) {
+      bestScore = score;
+      storeItem('bestScore', bestScore);
+    }
     state = "gameOver";
   }
 }
