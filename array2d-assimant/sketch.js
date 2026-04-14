@@ -79,7 +79,7 @@ function draw() {
     fill("white");
     textAlign(CENTER);
     text("Game Over", width/2, height/2);
-    text(`Score: ${score}`, width/2  + 20, height/2 + 100);
+    text(`Best Score: ${score}`, width/2  + 20, height/2 + 100);
   }
 }
 
@@ -197,5 +197,3 @@ function updateTime() {
     state = "gameOver";
   }
 }
-
-

@@ -10,6 +10,7 @@
 - [nabours](08-nab)
 - [life](09-life)
 - [charecter in grid](10-charecter)
+- [walker OOP](12-walker)
 
 ## Assigmants
 - [interactive sence](interactive-sence)
