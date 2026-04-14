@@ -3,7 +3,7 @@
 // March 26 2026
 //
 // Extra for Experts:
-// - Made a 5 second timer so if you run out of time you die 
+// - Made a 1 minute timer so if you run out of time you die and make it so it saves your best score
 
 let state = "loading";
 
@@ -51,6 +51,7 @@ function setup() {
   spawnFood();
 }
 
+// creates everything
 function draw() {
   background("black");
 
@@ -146,10 +147,10 @@ function keyPressed() {
     state = "gameOver";
   }
 
-  // Eating food
+  // Eating food and getting score increase and save to local storage
   if (snakeX === foodX && snakeY === foodY) {
     spawnFood();
-    score += 1; // increase score
+    score += 1; 
   }
   
   // Rest game
@@ -158,6 +159,7 @@ function keyPressed() {
     snakeX = 10;
     snakeY = 10;
     timer = 60;
+    score = 0;
   }
 }
 
@@ -185,8 +187,9 @@ function drawTime(){
   text("Time:" + timer, width - 930, 30);
 }
 
+// updates the timer 
 function updateTime() {
-  if (millis() - lastTime >= 1000) { // 1 second passed
+  if (millis() - lastTime >= 1000) { 
     timer--;
     lastTime = millis();
   }
@@ -195,8 +198,4 @@ function updateTime() {
   }
 }
 
-
-
-// fix full screen problem
-// build timer
 
