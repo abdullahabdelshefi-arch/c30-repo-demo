@@ -61,7 +61,7 @@ function setup() {
   }
   spawnFood();
   // local best score gets the best score 
-  bestScore = getItem("bestScore") || 0;
+  bestScore = getItem("bestScore");
 }
 
 
@@ -93,10 +93,13 @@ function draw() {
 
   //  what happens if you die and best score saved
   if (state === "gameOver") {
-    if (score > bestScore) {
+    if (score >= bestScore) {
       bestScore = score;
       storeItem("bestScore", bestScore);
     } 
+    if( bestScore > score){
+      storeItem("bestScore", bestScore);
+    }
     textSize(70);
     fill("white");
     textAlign(CENTER);
