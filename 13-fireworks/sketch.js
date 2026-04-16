@@ -22,6 +22,10 @@ class particale{
     fill(this.r, this.g, this.b, this.opacity);
     circle(this.x, this.y, this.raduis*2);
   }
+
+  isDead(){
+    return this.opacity <= 0;
+  }
 }
 
 
@@ -35,8 +39,14 @@ function setup() {
 function draw() {
   background("Black");
   for(let someFireworks of theFirework){
-    someFireworks.update();
-    someFireworks.display();
+    if (someFireworks.isDead()){
+      let index = theFirework.indexOf(someFireworks);
+      theFirework.splice(index, 1);
+    }
+    else{
+      someFireworks.update();
+      someFireworks.display();
+    }
   }
 }
 
