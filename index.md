@@ -13,6 +13,7 @@
 - [walker OOP](12-walker)
 - [Fireworks oop](13-fireworks)
 - [Ball Colllision](14-ball-oop)
+- [connected nodes OOP demo](15-nodes)
 
 ## Assigmants
 - [interactive sence](interactive-sence)
